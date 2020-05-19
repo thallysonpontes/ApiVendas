@@ -1,6 +1,8 @@
 package io.github.dougllasfps.domain.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 import java.util.Set;
 
 @Entity
@@ -14,8 +16,19 @@ public class Cliente {
 
     @Column(name = "nome", length = 100)
     private String nome;
+    
+    @Column(name = "cpf")
+    private Integer cpf;
 
-    @OneToMany( mappedBy = "cliente" , fetch = FetchType.LAZY )
+    public Integer getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(Integer cpf) {
+		this.cpf = cpf;
+	}
+
+	@OneToMany( mappedBy = "cliente" , fetch = FetchType.LAZY )
     private Set<Pedido> pedidos;
 
     public Cliente() {
